@@ -1,14 +1,12 @@
+import { ScrollFrameHero } from "@/components/scrollytelling/ScrollFrameHero";
 import { BatteryStorageSection } from "@/components/sections/BatteryStorageSection";
 import { ContactSection } from "@/components/sections/ContactSection";
-import { HeroSection } from "@/components/sections/HeroSection";
 import { ProjectPhasesSection } from "@/components/sections/ProjectPhasesSection";
-import { ScrollytellingSection } from "@/components/sections/ScrollytellingSection";
 
 export default function Home() {
   return (
-    <main className="min-h-screen overflow-hidden bg-[var(--background)] text-[var(--foreground)]">
-      <HeroSection />
-      <ScrollytellingSection />
+    <main id="top" className="min-h-screen overflow-x-hidden bg-[#07130F] text-[#F8F5EF]">
+      <ScrollFrameHero />
       <ProjectPhasesSection />
       <BatteryStorageSection />
       <ContactSection />

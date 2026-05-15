@@ -1,0 +1,92 @@
+{
+  "id": "energy-infrastructure-scroll-demo",
+  "title": "Vom Standort zum netzgekoppelten Energieinfrastruktur-Asset",
+  "intent": "Eine sichtbare Canvas-Frame-Scrollytelling-Demo für PV-Parks, Batteriespeicherparks, Netzanschluss und Energieinfrastruktur.",
+  "referencePrinciples": [
+    "gepinnte visuelle Bühne",
+    "Scroll-Fortschritt steuert exakt die Frame-Nummer",
+    "HTML-Texte liegen über dem Canvas",
+    "ruhige Premium-Motion",
+    "große Typografie und viel Negativraum",
+    "keine direkte Übernahme von Referenztexten, Bildern, Logos, Farben, Layouts oder Animationen"
+  ],
+  "manifest": {
+    "path": "public/generated/energy-transformation/manifest.json",
+    "publicUrl": "/generated/energy-transformation/manifest.json",
+    "poster": "/generated/energy-transformation/poster.svg",
+    "frameUrlTemplate": "/generated/energy-transformation/frame_{index}.svg",
+    "frameCount": 12,
+    "indexBase": 1,
+    "pad": 4
+  },
+  "rooms": [
+    {
+      "id": "hero-stage",
+      "label": "Gepinnte Canvas-Bühne",
+      "height": "500vh",
+      "components": ["ScrollFrameHero", "CanvasSequence"],
+      "beats": ["site-analysis", "pv-planning", "storage-integration", "grid-connection"]
+    },
+    {
+      "id": "project-phases",
+      "label": "Prozess-Section",
+      "components": ["ProjectPhasesSection"]
+    },
+    {
+      "id": "battery-storage",
+      "label": "Speicher-Section",
+      "components": ["BatteryStorageSection"]
+    },
+    {
+      "id": "contact",
+      "label": "Kontaktabschluss",
+      "components": ["ContactSection"]
+    }
+  ],
+  "beats": [
+    {
+      "id": "site-analysis",
+      "title": "Fläche analysieren",
+      "progressRange": [0, 0.25],
+      "frames": [1, 2, 3],
+      "copy": "Wir bewerten Einstrahlung, Topografie, Netzverfügbarkeit und Entwicklungspotenzial.",
+      "visualDirection": "Dunkle Landschaft, Topografie, Flächenkontur, technische Analyse-Layer."
+    },
+    {
+      "id": "pv-planning",
+      "title": "PV-Park planen",
+      "progressRange": [0.25, 0.5],
+      "frames": [4, 5, 6],
+      "copy": "Aus der Fläche entsteht ein technisches Konzept mit Modulfeldern, Wegen, Trafos und Netzstrategie.",
+      "visualDirection": "PV-Reihen, Wege, Trafopunkte und Layout-Struktur erscheinen."
+    },
+    {
+      "id": "storage-integration",
+      "title": "Speicher integrieren",
+      "progressRange": [0.5, 0.75],
+      "frames": [7, 8, 9],
+      "copy": "Batteriespeicher erhöhen Flexibilität, verbessern die Netzintegration und schaffen zusätzliche Erlöspotenziale.",
+      "visualDirection": "Speichercontainer, Umrichter, dezente Ladezustände und Energiepulse."
+    },
+    {
+      "id": "grid-connection",
+      "title": "Netz anschließen",
+      "progressRange": [0.75, 1],
+      "frames": [10, 11, 12],
+      "copy": "Das Projekt wird in eine stabile, netzgekoppelte Energieinfrastruktur überführt.",
+      "visualDirection": "Energieflusslinien, Netztrasse, Umspannwerk und finaler Systemverbund."
+    }
+  ],
+  "qaChecks": [
+    "Die Seite zeigt beim Öffnen sofort eine große dunkle Canvas-Bühne.",
+    "Der Canvas ist nicht leer: Poster oder ein Frame wird immer angezeigt.",
+    "Scroll-Fortschritt wird auf 0 bis 1 normalisiert.",
+    "Frameindex wird mit Math.round(progress * (frameCount - 1)) berechnet.",
+    "Manifest nutzt gepaddete Frame-URLs frame_0001.svg bis frame_0012.svg.",
+    "HTML-Text liegt über der Canvas-Bühne und bleibt zugänglich.",
+    "Progress-Indikator ist sichtbar.",
+    "Reduced-Motion-Nutzer erhalten eine robuste, nicht hektische Darstellung.",
+    "npm run lint ist erfolgreich.",
+    "npm run build ist erfolgreich."
+  ]
+}
