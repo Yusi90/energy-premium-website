@@ -1,0 +1,18 @@
+{
+  "id": "energy-transformation",
+  "kind": "canvas-sequence",
+  "format": "svg",
+  "frameCount": 12,
+  "framePattern": "frame_%04d.svg",
+  "indexBase": 1,
+  "pad": 4,
+  "fps": 30,
+  "publicUrl": "/generated/energy-transformation",
+  "frameUrlTemplate": "/generated/energy-transformation/frame_{index}.svg",
+  "poster": "/generated/energy-transformation/poster.svg",
+  "size": {
+    "width": 1880,
+    "height": 920,
+    "fit": "cover"
+  }
+}
