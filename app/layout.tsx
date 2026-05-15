@@ -14,7 +14,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="de" className="h-full scroll-smooth antialiased">
-      <body className="min-h-full bg-[#05070a] font-sans text-stone-100">{children}</body>
+      <body className="min-h-full bg-[var(--background)] font-sans text-[var(--foreground)]">{children}</body>
     </html>
   );
 }

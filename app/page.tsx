@@ -6,7 +6,7 @@ import { ScrollytellingSection } from "@/components/sections/ScrollytellingSecti
 
 export default function Home() {
   return (
-    <main className="min-h-screen overflow-hidden bg-[#05070a] text-stone-100">
+    <main className="min-h-screen overflow-hidden bg-[var(--background)] text-[var(--foreground)]">
       <HeroSection />
       <ScrollytellingSection />
       <ProjectPhasesSection />
