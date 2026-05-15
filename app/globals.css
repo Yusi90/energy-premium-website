@@ -8,7 +8,8 @@
   --primary-deep: #081a14;
   --accent: #d6a84f;
   --accent-soft: #f3d99a;
-  --secondary: #7bc7b5;
+  --cyan: #7bc7b5;
+  --secondary: var(--cyan);
   --muted: #756f64;
   --muted-light: #ebe3d4;
   --card: #fffaf0;

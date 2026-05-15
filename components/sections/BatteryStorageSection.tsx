@@ -1,3 +1,4 @@
+import { PremiumMediaFrame } from "@/components/media/PremiumMediaFrame";
 import { AnimatedCard, FadeInUp } from "@/components/ui/MotionPrimitives";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 
@@ -20,36 +21,30 @@ export function BatteryStorageSection() {
   return (
     <section className="relative overflow-hidden bg-[var(--primary-dark)] px-6 py-28 text-[var(--background)] lg:px-8">
       <div className="dark-grid absolute inset-0 opacity-45" />
-      <div className="absolute -right-24 top-20 h-[32rem] w-[32rem] rounded-full bg-[var(--secondary)]/12 blur-3xl" />
+      <div className="absolute -right-24 top-20 h-[32rem] w-[32rem] rounded-full bg-[var(--cyan)]/12 blur-3xl" />
       <div className="absolute bottom-0 left-0 h-[22rem] w-[22rem] rounded-full bg-[var(--accent)]/10 blur-3xl" />
 
-      <div className="relative mx-auto grid max-w-7xl items-center gap-14 lg:grid-cols-[1.05fr_0.95fr]">
+      <div className="relative mx-auto grid max-w-7xl items-center gap-14 lg:grid-cols-[0.94fr_1.06fr]">
         <FadeInUp>
           <div>
             <SectionLabel tone="light">Batteriespeicherparks</SectionLabel>
-            <h2 className="mt-6 max-w-2xl text-balance text-4xl font-semibold tracking-[-0.045em] text-[var(--foreground-light,#f8f5ef)] sm:text-5xl lg:text-6xl">
+            <h2 className="mt-6 max-w-2xl text-balance text-4xl font-semibold tracking-[-0.045em] text-[#f8f5ef] sm:text-5xl lg:text-6xl">
               Batteriespeicher für flexible Netze und belastbare Geschäftsmodelle.
             </h2>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-[#cbd8d0]">
-              Speichercontainer sind nicht nur Ergänzung zum PV-Park. Sie sind ein strategischer Baustein für Netzstabilität, Lastverschiebung und die wirtschaftliche Nutzung erneuerbarer Erzeugung.
+              Speichercontainer sind nicht nur Ergänzung zum PV-Park. Sie sind ein strategischer Baustein für Netzstabilität, Lastverschiebung, Integration volatiler Erzeugung und wirtschaftliche Zusatzpotenziale.
             </p>
           </div>
         </FadeInUp>
 
         <FadeInUp delay={0.12}>
-          <div className="relative rounded-[2.25rem] border border-[var(--border-light)] bg-white/[0.055] p-6 shadow-[0_30px_80px_rgba(0,0,0,0.24)] backdrop-blur">
-            <div className="absolute left-8 right-8 top-1/2 h-px bg-gradient-to-r from-transparent via-[var(--accent)]/60 to-transparent" />
-            <div className="relative grid gap-3">
-              {[0, 1, 2, 3].map((item) => (
-                <div key={item} className="flex items-center gap-4 rounded-2xl border border-white/10 bg-[#10261d] p-4">
-                  <div className="h-12 w-28 rounded-lg bg-[#ded8c9] shadow-inner" />
-                  <div className="h-2 flex-1 rounded-full bg-white/10">
-                    <div className="h-full w-2/3 rounded-full bg-[linear-gradient(90deg,var(--accent),var(--secondary))] opacity-70" />
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
+          <PremiumMediaFrame
+            eyebrow="Speicherarchitektur"
+            title="Containerisierte Flexibilität für netzdienliche Parks."
+            description="Die Speicher-Anmutung bleibt bewusst ruhig: modulare Container, technische Linien und dezente Energiepulse statt greller Neon-Effekte."
+            imageSrc="/media/battery-storage.jpg"
+            variant="battery"
+          />
         </FadeInUp>
 
         <div className="grid gap-5 lg:col-span-2 md:grid-cols-3">
