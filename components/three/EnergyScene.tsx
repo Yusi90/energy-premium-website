@@ -23,11 +23,11 @@ function SolarRows() {
         <group key={`${panel.x}-${panel.z}`} position={[panel.x, 0.25, panel.z]} rotation={[-0.55, 0, 0]}>
           <mesh castShadow receiveShadow>
             <boxGeometry args={[1.05, 0.04, 0.62]} />
-            <meshStandardMaterial color="#0c1724" metalness={0.45} roughness={0.28} />
+            <meshStandardMaterial color="#0b1f2a" metalness={0.5} roughness={0.24} />
           </mesh>
           <mesh position={[0, 0.026, 0]}>
             <boxGeometry args={[0.98, 0.012, 0.55]} />
-            <meshStandardMaterial color="#172c40" emissive="#0b2440" emissiveIntensity={0.25} metalness={0.7} roughness={0.18} />
+            <meshStandardMaterial color="#12303a" emissive="#0E3B2E" emissiveIntensity={0.22} metalness={0.7} roughness={0.18} />
           </mesh>
         </group>
       ))}
@@ -41,13 +41,13 @@ function BatteryContainers() {
       {[0, 1, 2].map((item) => (
         <mesh key={item} position={[0, 0, item * 0.82]} castShadow receiveShadow>
           <boxGeometry args={[1.9, 0.7, 0.58]} />
-          <meshStandardMaterial color="#d8ddd7" metalness={0.2} roughness={0.45} />
+          <meshStandardMaterial color="#d9ded6" metalness={0.28} roughness={0.38} />
         </mesh>
       ))}
       {[0, 1, 2].map((item) => (
         <mesh key={`door-${item}`} position={[-0.96, 0.02, item * 0.82]}>
           <boxGeometry args={[0.02, 0.46, 0.32]} />
-          <meshStandardMaterial color="#aab3ad" roughness={0.55} />
+          <meshStandardMaterial color="#7f8a83" roughness={0.5} />
         </mesh>
       ))}
     </group>
@@ -59,21 +59,21 @@ function GridConnection() {
     <group position={[3.9, 0.1, -2.8]}>
       <mesh position={[0, 0.18, 0]} receiveShadow>
         <boxGeometry args={[1.8, 0.16, 1.2]} />
-        <meshStandardMaterial color="#1a2428" roughness={0.5} />
+        <meshStandardMaterial color="#10231c" roughness={0.55} />
       </mesh>
       {[-0.55, 0, 0.55].map((x) => (
         <mesh key={x} position={[x, 0.65, 0]} castShadow>
           <cylinderGeometry args={[0.035, 0.035, 0.95, 12]} />
-          <meshStandardMaterial color="#b8c4bd" metalness={0.6} roughness={0.25} />
+          <meshStandardMaterial color="#d6cab0" metalness={0.62} roughness={0.25} />
         </mesh>
       ))}
       <mesh position={[0, 1.15, 0]}>
         <boxGeometry args={[1.45, 0.05, 0.08]} />
-        <meshStandardMaterial color="#c6d0c8" metalness={0.6} roughness={0.25} />
+        <meshStandardMaterial color="#d6a84f" metalness={0.55} roughness={0.25} />
       </mesh>
       <mesh position={[0.9, 0.42, 0.24]} castShadow>
         <boxGeometry args={[0.42, 0.48, 0.38]} />
-        <meshStandardMaterial color="#718078" roughness={0.42} />
+        <meshStandardMaterial color="#6f7d75" roughness={0.42} />
       </mesh>
     </group>
   );
@@ -102,11 +102,11 @@ function EnergyLines() {
     <group ref={group}>
       <mesh>
         <tubeGeometry args={[curve, 80, 0.012, 8, false]} />
-        <meshBasicMaterial color="#b7ffe1" transparent opacity={0.55} blending={AdditiveBlending} />
+        <meshBasicMaterial color="#7BC7B5" transparent opacity={0.62} blending={AdditiveBlending} />
       </mesh>
       <mesh position={[4, 0.78, -2.2]}>
         <sphereGeometry args={[0.08, 16, 16]} />
-        <meshBasicMaterial color="#d9fff0" transparent opacity={0.8} />
+        <meshBasicMaterial color="#D6A84F" transparent opacity={0.86} />
       </mesh>
     </group>
   );
@@ -125,7 +125,7 @@ function SceneRig() {
     <group ref={group}>
       <mesh rotation={[-Math.PI / 2, 0, 0]} receiveShadow>
         <planeGeometry args={[18, 12, 1, 1]} />
-        <meshStandardMaterial color="#111713" roughness={0.82} />
+        <meshStandardMaterial color="#0b1914" roughness={0.86} />
       </mesh>
       <SolarRows />
       <BatteryContainers />
@@ -134,7 +134,7 @@ function SceneRig() {
       <Float speed={1.2} rotationIntensity={0.08} floatIntensity={0.12}>
         <mesh position={[-5.1, 1.4, 3.2]}>
           <sphereGeometry args={[0.09, 20, 20]} />
-          <meshBasicMaterial color="#eafff7" transparent opacity={0.75} />
+          <meshBasicMaterial color="#F8F5EF" transparent opacity={0.72} />
         </mesh>
       </Float>
     </group>
@@ -143,15 +143,16 @@ function SceneRig() {
 
 export default function EnergyScene() {
   return (
-    <Canvas camera={{ position: [6.8, 5.1, 7.2], fov: 42 }} shadows dpr={[1, 1.7]}>
-      <color attach="background" args={["#05070a"]} />
-      <fog attach="fog" args={["#05070a", 8, 18]} />
-      <ambientLight intensity={0.55} />
-      <directionalLight position={[2, 6, 5]} intensity={2.2} castShadow shadow-mapSize={[1024, 1024]} />
-      <pointLight position={[-4, 2, 3]} color="#9fffd5" intensity={1.2} />
+    <Canvas camera={{ position: [7.2, 5.4, 7.4], fov: 40 }} shadows dpr={[1, 1.7]}>
+      <color attach="background" args={["#07130F"]} />
+      <fog attach="fog" args={["#07130F", 8, 18]} />
+      <ambientLight intensity={0.72} />
+      <directionalLight position={[2.5, 7, 5.5]} intensity={2.6} color="#F8F5EF" castShadow shadow-mapSize={[1024, 1024]} />
+      <pointLight position={[-4, 2, 3]} color="#7BC7B5" intensity={1.35} />
+      <pointLight position={[4, 3, -3]} color="#D6A84F" intensity={0.75} />
       <SceneRig />
       <Environment preset="city" />
-      <OrbitControls enableZoom={false} enablePan={false} autoRotate autoRotateSpeed={0.22} maxPolarAngle={Math.PI / 2.15} minPolarAngle={Math.PI / 3.2} />
+      <OrbitControls enableZoom={false} enablePan={false} autoRotate autoRotateSpeed={0.18} maxPolarAngle={Math.PI / 2.15} minPolarAngle={Math.PI / 3.2} />
     </Canvas>
   );
 }

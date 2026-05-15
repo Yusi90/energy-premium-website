@@ -6,6 +6,7 @@ import { imagePrompts, videoPrompts } from "@/lib/prompts";
 
 const imagePromptEntries = Object.entries(imagePrompts);
 const videoPromptEntries = Object.entries(videoPrompts);
+const filenames = ["hero-solar.jpg", "hero-video.mp4", "battery-storage.jpg", "grid-connection.jpg"];
 
 export default function AssetAdminPage() {
   const [selectedImagePrompt, setSelectedImagePrompt] = useState(imagePromptEntries[0][0]);
@@ -39,7 +40,7 @@ export default function AssetAdminPage() {
       }
 
       setImageBase64(data.imageBase64);
-      setStatus("Bild wurde generiert. Für Video-Tests muss es öffentlich erreichbar gehostet werden.");
+      setStatus('Bild herunterladen und in public/media speichern oder in Cloud Storage hochladen.');
     } catch (error) {
       setStatus(error instanceof Error ? error.message : "Unbekannter Fehler.");
     } finally {
@@ -67,7 +68,7 @@ export default function AssetAdminPage() {
 
       setVideoUrl(data.video);
       setRequestId(data.requestId ?? "");
-      setStatus("Video wurde generiert.");
+      setStatus("Video wurde generiert. Datei herunterladen und als hero-video.mp4 in public/media speichern.");
     } catch (error) {
       setStatus(error instanceof Error ? error.message : "Unbekannter Fehler.");
     } finally {
@@ -76,60 +77,67 @@ export default function AssetAdminPage() {
   }
 
   return (
-    <main className="min-h-screen bg-[#05070a] px-6 py-12 text-stone-100 lg:px-8">
-      <div className="mx-auto max-w-5xl">
-        <div className="rounded-[2rem] border border-amber-300/30 bg-amber-300/10 p-6">
-          <p className="text-sm font-semibold uppercase tracking-[0.26em] text-amber-100">Interne Testseite</p>
-          <h1 className="mt-4 text-4xl font-semibold tracking-[-0.03em]">Asset-Pipeline testen</h1>
-          <p className="mt-4 max-w-3xl text-stone-300">
-            Diese Seite nutzt nur interne API-Routen. API-Keys werden nicht im Client verwendet. Die fal.ai Videogenerierung benötigt eine öffentlich erreichbare imageUrl.
+    <main className="min-h-screen bg-[#07130F] px-6 py-12 text-[#F8F5EF] lg:px-8">
+      <div className="mx-auto max-w-6xl">
+        <div className="rounded-[2rem] border border-[#D6A84F]/30 bg-[#D6A84F]/10 p-6">
+          <p className="text-sm font-semibold uppercase tracking-[0.26em] text-[#D6A84F]">Interne Asset-Pipeline</p>
+          <h1 className="mt-4 text-4xl font-semibold tracking-[-0.04em]">Premium-Medien für Scrollytelling vorbereiten</h1>
+          <p className="mt-4 max-w-3xl text-[#F8F5EF]/70">
+            Generierte Bilder können heruntergeladen und in <code className="rounded bg-black/20 px-1">public/media</code> gespeichert werden. API-Keys werden nicht im Client angezeigt. fal.ai Image-to-Video benötigt eine öffentlich erreichbare Bild-URL; ein lokaler Dateipfad reicht nicht aus.
           </p>
+          <div className="mt-6 flex flex-wrap gap-3">
+            {filenames.map((name) => (
+              <span key={name} className="rounded-full border border-[#F8F5EF]/10 bg-[#07130F]/50 px-4 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-[#F8F5EF]/75">
+                {name}
+              </span>
+            ))}
+          </div>
         </div>
 
         <div className="mt-8 grid gap-6 lg:grid-cols-2">
-          <section className="rounded-[2rem] border border-white/10 bg-white/[0.04] p-6">
+          <section className="rounded-[2rem] border border-[#F8F5EF]/10 bg-[#F8F5EF]/[0.04] p-6">
             <h2 className="text-2xl font-semibold">Bildgenerierung</h2>
-            <label className="mt-6 block text-sm text-stone-300" htmlFor="imagePrompt">
+            <label className="mt-6 block text-sm text-[#F8F5EF]/70" htmlFor="imagePrompt">
               Bild-Prompt
             </label>
             <select
               id="imagePrompt"
               value={selectedImagePrompt}
               onChange={(event) => setSelectedImagePrompt(event.target.value)}
-              className="mt-2 w-full rounded-2xl border border-white/10 bg-black/50 p-3 text-stone-100"
+              className="mt-2 w-full rounded-2xl border border-[#F8F5EF]/10 bg-black/35 p-3 text-[#F8F5EF]"
             >
               {imagePromptEntries.map(([key]) => (
                 <option key={key} value={key}>{key}</option>
               ))}
             </select>
-            <p className="mt-4 min-h-32 rounded-2xl bg-black/40 p-4 text-sm leading-6 text-stone-300">{imagePrompt}</p>
+            <p className="mt-4 min-h-32 rounded-2xl bg-black/25 p-4 text-sm leading-6 text-[#F8F5EF]/70">{imagePrompt}</p>
             <button
               type="button"
               onClick={generateImage}
               disabled={isGeneratingImage}
-              className="mt-5 rounded-full bg-stone-100 px-6 py-3 text-sm font-semibold uppercase tracking-[0.2em] text-stone-950 disabled:cursor-not-allowed disabled:opacity-50"
+              className="mt-5 rounded-full bg-[#F8F5EF] px-6 py-3 text-sm font-semibold uppercase tracking-[0.2em] text-[#07130F] disabled:cursor-not-allowed disabled:opacity-50"
             >
               {isGeneratingImage ? "Generiert..." : "Bild generieren"}
             </button>
           </section>
 
-          <section className="rounded-[2rem] border border-white/10 bg-white/[0.04] p-6">
+          <section className="rounded-[2rem] border border-[#F8F5EF]/10 bg-[#F8F5EF]/[0.04] p-6">
             <h2 className="text-2xl font-semibold">Videogenerierung</h2>
-            <label className="mt-6 block text-sm text-stone-300" htmlFor="videoPrompt">
+            <label className="mt-6 block text-sm text-[#F8F5EF]/70" htmlFor="videoPrompt">
               Video-Prompt
             </label>
             <select
               id="videoPrompt"
               value={selectedVideoPrompt}
               onChange={(event) => setSelectedVideoPrompt(event.target.value)}
-              className="mt-2 w-full rounded-2xl border border-white/10 bg-black/50 p-3 text-stone-100"
+              className="mt-2 w-full rounded-2xl border border-[#F8F5EF]/10 bg-black/35 p-3 text-[#F8F5EF]"
             >
               {videoPromptEntries.map(([key]) => (
                 <option key={key} value={key}>{key}</option>
               ))}
             </select>
-            <p className="mt-4 min-h-32 rounded-2xl bg-black/40 p-4 text-sm leading-6 text-stone-300">{videoPrompt}</p>
-            <label className="mt-5 block text-sm text-stone-300" htmlFor="imageUrl">
+            <p className="mt-4 min-h-32 rounded-2xl bg-black/25 p-4 text-sm leading-6 text-[#F8F5EF]/70">{videoPrompt}</p>
+            <label className="mt-5 block text-sm text-[#F8F5EF]/70" htmlFor="imageUrl">
               Öffentlich erreichbare imageUrl
             </label>
             <input
@@ -137,36 +145,39 @@ export default function AssetAdminPage() {
               value={imageUrl}
               onChange={(event) => setImageUrl(event.target.value)}
               placeholder="https://..."
-              className="mt-2 w-full rounded-2xl border border-white/10 bg-black/50 p-3 text-stone-100"
+              className="mt-2 w-full rounded-2xl border border-[#F8F5EF]/10 bg-black/35 p-3 text-[#F8F5EF]"
             />
             <button
               type="button"
               onClick={generateVideo}
               disabled={isGeneratingVideo}
-              className="mt-5 rounded-full bg-emerald-100 px-6 py-3 text-sm font-semibold uppercase tracking-[0.2em] text-stone-950 disabled:cursor-not-allowed disabled:opacity-50"
+              className="mt-5 rounded-full bg-[#D6A84F] px-6 py-3 text-sm font-semibold uppercase tracking-[0.2em] text-[#07130F] disabled:cursor-not-allowed disabled:opacity-50"
             >
               {isGeneratingVideo ? "Generiert..." : "Video generieren"}
             </button>
           </section>
         </div>
 
-        {status && <p className="mt-6 rounded-2xl border border-white/10 bg-white/[0.04] p-4 text-sm text-stone-300">{status}</p>}
+        {status && <p className="mt-6 rounded-2xl border border-[#F8F5EF]/10 bg-[#F8F5EF]/[0.04] p-4 text-sm text-[#F8F5EF]/75">{status}</p>}
 
         <div className="mt-8 grid gap-6 lg:grid-cols-2">
           {imageBase64 && (
-            <Image
-              className="rounded-[2rem] border border-white/10"
-              src={`data:image/png;base64,${imageBase64}`}
-              alt="Generiertes Energie-Infrastruktur Asset"
-              width={1536}
-              height={1024}
-              unoptimized
-            />
+            <div className="rounded-[2rem] border border-[#F8F5EF]/10 bg-[#F8F5EF]/[0.04] p-4">
+              <Image
+                className="rounded-[1.5rem]"
+                src={`data:image/png;base64,${imageBase64}`}
+                alt="Generiertes Energie-Infrastruktur Asset"
+                width={1536}
+                height={1024}
+                unoptimized
+              />
+              <p className="mt-4 text-sm text-[#F8F5EF]/70">Bild herunterladen und in public/media speichern oder in Cloud Storage hochladen.</p>
+            </div>
           )}
           {videoUrl && (
-            <div className="rounded-[2rem] border border-white/10 p-4">
+            <div className="rounded-[2rem] border border-[#F8F5EF]/10 bg-[#F8F5EF]/[0.04] p-4">
               <video src={videoUrl} controls className="w-full rounded-2xl" />
-              {requestId && <p className="mt-3 text-xs text-stone-400">Request ID: {requestId}</p>}
+              {requestId && <p className="mt-3 text-xs text-[#F8F5EF]/55">Request ID: {requestId}</p>}
             </div>
           )}
         </div>

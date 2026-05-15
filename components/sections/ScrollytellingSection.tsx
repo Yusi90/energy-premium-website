@@ -1,43 +1,58 @@
+"use client";
+
+import { motion } from "framer-motion";
+import { PremiumMediaFrame } from "@/components/media/PremiumMediaFrame";
+import { ScrollScrubVideo } from "@/components/scrollytelling/ScrollScrubVideo";
+
 const storyItems = [
   {
-    title: "Von der Fläche zum Energiepark",
-    text: "Am Anfang steht eine belastbare Standortprüfung: Flächenzuschnitt, Netzverfügbarkeit, planungsrechtliche Rahmenbedingungen und wirtschaftliche Eckdaten werden gemeinsam bewertet.",
+    title: "Flächen identifizieren",
+    text: "Wir analysieren Standorte nach Einstrahlung, Netzverfügbarkeit, Topografie und Entwicklungspotenzial.",
+    variant: "land" as const,
   },
   {
-    title: "PV-Parks mit System",
-    text: "Aus der Analyse entsteht ein technisches Layout mit klarer Ertragslogik, servicefähiger Infrastruktur und einem Projektpfad, der Genehmigung, Bau und Betrieb früh zusammendenkt.",
+    title: "PV-Park planen",
+    text: "Aus der Fläche entsteht ein belastbares Energiekonzept mit Modulfeldern, Wegen, Trafostationen und Netzstrategie.",
+    variant: "solar" as const,
   },
   {
-    title: "Netzanschluss, Betrieb und Skalierung",
-    text: "Netzanschluss, Umspannwerk, Monitoring und Erweiterbarkeit werden nicht nachgelagert betrachtet, sondern als zentrale Bausteine einer langlebigen Energieinfrastruktur geplant.",
+    title: "Speicher integrieren",
+    text: "Batteriespeicher erhöhen Flexibilität, verbessern die Netzintegration und schaffen zusätzliche Erlöspotenziale.",
+    variant: "battery" as const,
+  },
+  {
+    title: "Netzgekoppelt betreiben",
+    text: "Nach Genehmigung und Bau wird das Projekt in eine stabile Energieinfrastruktur überführt.",
+    variant: "grid" as const,
   },
 ];
 
 export function ScrollytellingSection() {
   return (
-    <section className="relative bg-[#070a0d] px-6 py-28 lg:px-8">
-      <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.85fr_1.15fr]">
-        <div className="lg:sticky lg:top-20 lg:h-fit">
-          <p className="text-sm font-medium uppercase tracking-[0.28em] text-emerald-200/70">Entwicklungspfad</p>
-          <h2 className="mt-5 text-4xl font-semibold tracking-[-0.03em] text-white sm:text-5xl">
-            Von der Fläche zum Energiepark
+    <section id="prozess" className="relative bg-[#07130F]">
+      <ScrollScrubVideo steps={storyItems} />
+
+      <div className="px-6 py-24 lg:hidden">
+        <div className="mx-auto max-w-3xl">
+          <p className="text-sm font-semibold uppercase tracking-[0.28em] text-[#D6A84F]">Entwicklungspfad</p>
+          <h2 className="mt-5 text-4xl font-semibold tracking-[-0.04em] text-[#F8F5EF]">
+            Von der Fläche zur netzgekoppelten Energieinfrastruktur.
           </h2>
-          <p className="mt-6 max-w-xl text-lg leading-8 text-stone-400">
-            Professionelle Energieprojekte entstehen durch präzise Vorarbeit, belastbare Technik und eine klare Abstimmung zwischen Eigentümern, Kommunen, Netzbetreibern und Kapitalpartnern.
+          <p className="mt-6 text-lg leading-8 text-[#F8F5EF]/68">
+            Mobile wird die Story bewusst leichter erzählt: Schritt für Schritt, ohne schwere Sticky-Komplexität.
           </p>
         </div>
-
-        <div className="space-y-6">
+        <div className="mx-auto mt-12 grid max-w-3xl gap-8">
           {storyItems.map((item, index) => (
-            <article
+            <motion.article
               key={item.title}
-              className="group relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.035] p-8 shadow-2xl shadow-black/20 backdrop-blur"
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.7, ease: "easeOut" }}
             >
-              <div className="absolute inset-y-0 left-0 w-1 bg-gradient-to-b from-emerald-200/60 via-sky-200/20 to-transparent opacity-70" />
-              <span className="text-sm font-medium text-stone-500">0{index + 1}</span>
-              <h3 className="mt-8 text-2xl font-semibold tracking-[-0.02em] text-white">{item.title}</h3>
-              <p className="mt-4 max-w-2xl text-base leading-7 text-stone-400">{item.text}</p>
-            </article>
+              <PremiumMediaFrame eyebrow={`Schritt 0${index + 1}`} title={item.title} description={item.text} variant={item.variant} />
+            </motion.article>
           ))}
         </div>
       </div>
